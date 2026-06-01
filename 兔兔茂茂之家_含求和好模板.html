@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>兔兔茂茂之家</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg1:#fff7ef;
+  --bg2:#ffeef7;
+  --card:rgba(255,255,255,.88);
+  --deep:#6d4637;
+  --soft:#a77a68;
+  --line:#f1d7cc;
+  --pink:#f8bfd5;
+  --orange:#ffd3a0;
+  --cream:#fff8f4;
+  --green:#dff2cf;
+  --mint:#ccefdc;
+  --blue:#cfe8ff;
+  --gold:#ffe78f;
+}
+body{
+  height:100vh;
+  overflow:hidden;
+  background:linear-gradient(180deg,var(--bg1),var(--bg2),#fffaf7);
+  color:var(--deep);
+  font-family:"PingFang SC","Songti SC","Noto Serif SC",serif;
+}
+.phone{
+  width:100%;
+  max-width:430px;
+  height:100vh;
+  margin:0 auto;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(180deg,#fff7ef,#ffeef6,#fffaf7);
+}
+.header{
+  height:88px;
+  padding:22px 20px 8px;
+  text-align:center;
+}
+.header h1{
+  font-size:29px;
+  font-weight:500;
+  letter-spacing:2px;
+}
+.header p{
+  font-size:13px;
+  color:var(--soft);
+  font-style:italic;
+  margin-top:6px;
+}
+.pages{
+  height:calc(100vh - 88px - 82px);
+  overflow:hidden;
+  position:relative;
+}
+.page{
+  display:none;
+  height:100%;
+  overflow:auto;
+  padding:8px 18px 18px;
+  animation:fade .22s ease;
+}
+.page.active{display:block}
+@keyframes fade{
+  from{opacity:.4;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:18px;
+  margin-bottom:14px;
+  box-shadow:0 12px 28px rgba(128,78,62,.11);
+  backdrop-filter:blur(12px);
+}
+h2{
+  font-size:21px;
+  font-weight:500;
+  margin-bottom:12px;
+}
+h3{
+  font-size:18px;
+  font-weight:500;
+  margin-bottom:8px;
+}
+button{
+  border:0;
+  border-radius:999px;
+  padding:11px 16px;
+  background:var(--orange);
+  color:#6b3f31;
+  font-family:inherit;
+  font-size:14px;
+  box-shadow:0 7px 16px rgba(170,100,70,.16);
+}
+button:active{transform:scale(.96)}
+.pink{background:var(--pink)}
+.green{background:var(--green)}
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.mini{
+  background:var(--cream);
+  border:1px solid #f1d8cd;
+  border-radius:22px;
+  padding:14px 10px;
+  text-align:center;
+  line-height:1.65;
+  min-height:78px;
+}
+.item{
+  background:var(--cream);
+  border-radius:18px;
+  padding:12px;
+  margin-bottom:10px;
+  line-height:1.7;
+}
+textarea,input,select{
+  width:100%;
+  border:1px solid #efd1c7;
+  border-radius:18px;
+  padding:12px;
+  font-family:inherit;
+  margin-top:10px;
+  background:#fff;
+  color:var(--deep);
+  outline:none;
+  font-size:14px;
+}
+textarea{
+  min-height:84px;
+  line-height:1.7;
+  resize:none;
+}
+.home-yard{
+  height:300px;
+  border-radius:34px;
+  position:relative;
+  overflow:hidden;
+  border:1px solid #f1d5cb;
+  background:
+    radial-gradient(circle at 78% 18%,rgba(255,255,255,.85),transparent 18%),
+    linear-gradient(180deg,#caecff 0%,#fff0d7 52%,#cceebb 53%,#b9e3a7 100%);
+  box-shadow:0 16px 34px rgba(120,80,70,.12);
+}
+.sun{
+  position:absolute;
+  right:28px;
+  top:24px;
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:#ffe27a;
+  box-shadow:0 0 28px rgba(255,210,80,.55);
+}
+.house{
+  position:absolute;
+  left:50%;
+  top:130px;
+  transform:translateX(-50%);
+  font-size:78px;
+  filter:drop-shadow(0 8px 10px rgba(100,60,50,.18));
+}
+.jump-rabbit{
+  position:absolute;
+  left:30px;
+  bottom:62px;
+  font-size:68px;
+  animation:jump 1.15s ease-in-out infinite,wander 7.5s ease-in-out infinite;
+  filter:drop-shadow(0 8px 9px rgba(100,60,50,.18));
+}
+@keyframes jump{
+  0%,100%{transform:translateY(0) rotate(-2deg)}
+  45%{transform:translateY(-28px) rotate(3deg)}
+}
+@keyframes wander{
+  0%,100%{left:28px}
+  50%{left:278px}
+}
+.speech{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:12px;
+  background:rgba(255,255,255,.88);
+  border-radius:22px;
+  padding:10px 14px;
+  text-align:center;
+  color:#8a6251;
+  line-height:1.55;
+  font-size:14px;
+}
+.carrot{
+  position:absolute;
+  font-size:28px;
+  animation:pop .75s ease forwards;
+  pointer-events:none;
+}
+@keyframes pop{
+  0%{opacity:0;transform:translateY(10px) scale(.5)}
+  70%{opacity:1}
+  100%{opacity:0;transform:translateY(-55px) scale(1.2)}
+}
+.bunny-big{
+  text-align:center;
+  font-size:82px;
+  animation:breathe 1.8s ease-in-out infinite;
+  margin:4px 0 10px;
+}
+@keyframes breathe{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+}
+.days{
+  font-size:42px;
+  color:#d87896;
+  text-align:center;
+}
+.progress{
+  height:10px;
+  background:#f4d8df;
+  border-radius:99px;
+  overflow:hidden;
+  margin-top:10px;
+}
+.progress span{
+  display:block;
+  height:100%;
+  width:38%;
+  background:linear-gradient(90deg,#f7a8c2,#ffd4a5);
+}
+.status-strip{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:12px;
+}
+.status-pill{
+  background:#fff;
+  border:1px solid #efd1c7;
+  border-radius:18px;
+  padding:10px 8px;
+  text-align:center;
+  font-size:12px;
+  line-height:1.55;
+  min-height:64px;
+}
+.status-pill b{
+  display:block;
+  color:#c8698b;
+  font-size:17px;
+  font-weight:600;
+}
+.care-board{
+  display:grid;
+  gap:10px;
+}
+.care-row{
+  background:var(--cream);
+  border:1px solid #f1d8cd;
+  border-radius:20px;
+  padding:12px;
+}
+.care-row p{
+  color:#8b6655;
+  font-size:13px;
+  line-height:1.7;
+  margin-top:4px;
+}
+.care-meter{
+  height:9px;
+  background:#f2dbe1;
+  border-radius:99px;
+  overflow:hidden;
+  margin-top:9px;
+}
+.care-meter span{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,#f8a8c5,#ffe08d,#bde9ca);
+}
+.tag-row{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+.tag{
+  background:#fff;
+  border:1px solid #efd1c7;
+  border-radius:999px;
+  padding:7px 11px;
+  font-size:13px;
+}
+.guide-box{
+  background:#fff8f4;
+  border-radius:22px;
+  padding:14px;
+  margin-bottom:12px;
+  line-height:1.8;
+}
+.guide-box strong{
+  color:#b95f7d;
+}
+.memo-list .item{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start;
+}
+.memo-list .item span:first-child{
+  flex:1;
+}
+.small-btn{
+  padding:7px 10px;
+  font-size:12px;
+  box-shadow:none;
+}
+.quiz-option{
+  background:#fff8f4;
+  border-radius:18px;
+  padding:12px;
+  margin-bottom:10px;
+}
+.peace-tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin:10px 0;
+}
+.peace-tabs button{
+  padding:10px 8px;
+  font-size:13px;
+}
+.peace-tabs button.active{
+  background:var(--pink);
+  color:#7c3f58;
+  font-weight:600;
+}
+.peace-template{
+  white-space:pre-wrap;
+  background:var(--cream);
+  border:1px solid #f1d8cd;
+  border-radius:22px;
+  padding:14px;
+  line-height:1.75;
+  font-size:14px;
+  color:#7b5548;
+}
+.peace-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+.peace-formula{
+  margin-top:10px;
+  color:#8b6655;
+  font-size:13px;
+  line-height:1.75;
+}
+.game-stage{
+  height:360px;
+  border-radius:30px;
+  border:1px solid #d7e9cf;
+  overflow:hidden;
+  position:relative;
+  background:
+    radial-gradient(circle at 20% 18%,rgba(255,255,255,.9),transparent 15%),
+    radial-gradient(circle at 82% 14%,rgba(255,231,143,.75),transparent 13%),
+    linear-gradient(180deg,#cfe8ff 0%,#f8efd3 48%,#d4f0c7 49%,#b5df9d 100%);
+  touch-action:none;
+  user-select:none;
+  box-shadow:0 16px 32px rgba(91,122,72,.13);
+}
+.game-cloud{
+  position:absolute;
+  top:28px;
+  left:18px;
+  width:92px;
+  height:34px;
+  border-radius:99px;
+  background:rgba(255,255,255,.82);
+  box-shadow:44px 14px 0 rgba(255,255,255,.72),130px -2px 0 rgba(255,255,255,.62);
+}
+.game-bunny{
+  position:absolute;
+  bottom:24px;
+  left:50%;
+  width:76px;
+  height:76px;
+  margin-left:-38px;
+  display:grid;
+  place-items:center;
+  font-size:58px;
+  transition:left .08s linear,transform .12s ease;
+  filter:drop-shadow(0 9px 8px rgba(86,72,50,.18));
+}
+.game-bunny.happy{transform:translateY(-6px) scale(1.08)}
+.game-food{
+  position:absolute;
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  font-size:30px;
+  filter:drop-shadow(0 6px 6px rgba(100,80,55,.16));
+}
+.game-hud{
+  position:absolute;
+  left:12px;
+  right:12px;
+  top:12px;
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  pointer-events:none;
+}
+.game-hud span{
+  background:rgba(255,255,255,.82);
+  border:1px solid rgba(239,209,199,.8);
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:12px;
+  color:#7f594b;
+}
+.game-message{
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:106px;
+  background:rgba(255,255,255,.86);
+  border-radius:20px;
+  padding:9px 12px;
+  line-height:1.55;
+  text-align:center;
+  font-size:13px;
+  color:#7f594b;
+}
+.game-controls{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+.game-controls button{
+  padding:10px 8px;
+}
+.pantry{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-top:10px;
+}
+.food-card{
+  background:#fff;
+  border:1px solid #efd1c7;
+  border-radius:18px;
+  padding:10px 6px;
+  text-align:center;
+  font-size:12px;
+  line-height:1.55;
+}
+.food-card b{
+  display:block;
+  font-size:25px;
+  margin-bottom:2px;
+}
+.food-card.active{
+  border-color:#d87896;
+  background:#fff3f7;
+  box-shadow:0 8px 18px rgba(216,120,150,.15);
+}
+.nav{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:82px;
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  background:rgba(255,255,255,.84);
+  border-top:1px solid #efd4ca;
+  backdrop-filter:blur(16px);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.nav button{
+  background:transparent;
+  box-shadow:none;
+  border-radius:0;
+  padding:8px 0 6px;
+  margin:0;
+  color:#9a7565;
+  font-size:11px;
+}
+.nav button span{
+  display:block;
+  font-size:21px;
+  margin-bottom:3px;
+}
+.nav button.active{
+  color:#c8698b;
+  font-weight:600;
+}
+.toast{
+  position:absolute;
+  left:50%;
+  bottom:98px;
+  transform:translateX(-50%);
+  background:rgba(112,70,55,.92);
+  color:#fff;
+  border-radius:999px;
+  padding:10px 16px;
+  font-size:13px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  white-space:nowrap;
+}
+.toast.show{
+  opacity:1;
+  bottom:108px;
+}
+.footer{
+  text-align:center;
+  color:#9a7565;
+  line-height:1.8;
+  margin-top:14px;
+  font-style:italic;
+  font-size:13px;
+}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="header">
+    <h1>兔兔茂茂之家</h1>
+    <p>茂茂专用兔兔说明书</p>
+  </div>
+
+  <div class="pages">
+    <section class="page active" id="home">
+      <div class="home-yard" onclick="yardClick(event)">
+        <div class="sun"></div>
+        <div class="house">🏡</div>
+        <div class="jump-rabbit" onclick="petRabbit(event)">🐰</div>
+        <div class="speech" id="homeSpeech">点点兔兔，它会告诉茂茂今天该怎么爱兔兔。</div>
+      </div>
+
+      <div class="card">
+        <h2>💗 今天茂茂可以做什么</h2>
+        <div class="grid2">
+          <div class="mini" onclick="doTask('今天问兔兔吃饭没')">🍚<br>问兔兔吃饭没</div>
+          <div class="mini" onclick="doTask('今天夸兔兔漂亮')">🌷<br>夸兔兔漂亮</div>
+          <div class="mini" onclick="doTask('今天说想兔兔')">💬<br>说想兔兔</div>
+          <div class="mini" onclick="feedHome()">🥕<br>喂小兔兔</div>
+        </div>
+        <div id="taskLog" style="margin-top:12px"></div>
+      </div>
+
+      <div class="card">
+        <h2>🌤️ 兔兔今日状态</h2>
+        <div class="status-strip">
+          <div class="status-pill">亲亲值<b id="kissScore">88</b></div>
+          <div class="status-pill">想念值<b id="missScore">96</b></div>
+          <div class="status-pill">喂食值<b id="feedScore">52</b></div>
+        </div>
+        <div class="care-board" style="margin-top:12px">
+          <div class="care-row">
+            <strong>今日小提醒</strong>
+            <p id="dailyCare">记得问兔兔今天有没有好好吃饭，也要说一句具体的想念。</p>
+            <div class="care-meter"><span id="careMeter" style="width:68%"></span></div>
+          </div>
+        </div>
+        <button class="green" onclick="refreshCare()">换一条今日提醒</button>
+      </div>
+
+      <div class="card">
+        <h2>✈️ 新加坡倒计时</h2>
+        <p style="text-align:center;color:#9a7565">还有</p>
+        <div class="days" id="daysLeft">---</div>
+        <p style="text-align:center;color:#9a7565">天，兔兔就回到茂茂身边</p>
+        <div class="progress"><span></span></div>
+        <p style="font-size:13px;color:#9a7565;margin-top:10px;text-align:center">今天也比昨天更靠近一点点。</p>
+      </div>
+    </section>
+
+    <section class="page" id="voice">
+      <div class="card">
+        <h2>🐰 兔兔语气生成器</h2>
+        <div class="bunny-big">🐰</div>
+        <p style="line-height:1.8;color:#8b6655">
+          茂茂不知道怎么回消息的时候，可以用这里生成一条“兔兔会喜欢听”的话。
+        </p>
+        <select id="voiceScene">
+          <option value="miss">想兔兔了</option>
+          <option value="comfort">兔兔难过了</option>
+          <option value="praise">夸兔兔</option>
+          <option value="peace">吵架后想和好</option>
+          <option value="night">睡前晚安</option>
+          <option value="date">约下次见面</option>
+        </select>
+        <textarea id="voiceOutput" readonly>点下面按钮，生成一句兔兔语气。</textarea>
+        <button class="pink" onclick="generateVoice()">✨ 生成兔兔语气</button>
+        <button onclick="copyVoice()">复制这句话</button>
+      </div>
+
+      <div class="card">
+        <h2>🎀 兔兔语气关键词</h2>
+        <div class="tag-row">
+          <span class="tag">不要讲大道理</span>
+          <span class="tag">先抱抱</span>
+          <span class="tag">说“我在”</span>
+          <span class="tag">夸漂亮</span>
+          <span class="tag">说具体的想念</span>
+          <span class="tag">不要冷处理</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="guide">
+      <div class="card">
+        <h2>📖 兔兔小指南</h2>
+
+        <div class="guide-box">
+          <strong>1. 兔兔生气了怎么办？</strong><br>
+          先不要急着解释。第一句先说：“我知道你不开心了，我不是不在乎你。”然后问：“你要不要先抱抱，或者我先听你说？”
+        </div>
+
+        <div class="guide-box">
+          <strong>2. 生兔兔气了怎么办？</strong><br>
+          可以生气，但不要消失、冷暴力、故意让兔兔猜。请说：“我现在有点难过，但我不是要离开你。我缓一下，等下好好说。”
+        </div>
+
+        <div class="guide-box">
+          <strong>3. 兔兔不自信了怎么办？</strong><br>
+          不要说“你想太多了”。要说：“兔兔真的很漂亮，也很值得被爱。我知道你会不安，但我会一直认真选你。”
+        </div>
+
+        <div class="guide-box">
+          <strong>4. 异地恋兔兔想你了怎么办？</strong><br>
+          不要只回“我也想你”。要具体一点：“我也想你，刚刚看到什么都想拍给你。等你回来我要抱你很久。”
+        </div>
+
+        <div class="guide-box">
+          <strong>5. 吵架后怎么和好？</strong><br>
+          先确认爱，再讨论问题。模板：“我不想赢你，我想和你好。刚才我说得不好，我们重新说一次。”
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🩹 一键哄兔兔</h2>
+        <div class="grid2">
+          <div class="mini" onclick="comfort('先抱抱，不要急着讲道理。')">🤍<br>她难过</div>
+          <div class="mini" onclick="comfort('先说：我没有不爱你，我只是没表达好。')">🌧️<br>吵架后</div>
+          <div class="mini" onclick="comfort('说：兔兔今天也很漂亮，很值得被爱。')">🌷<br>不自信</div>
+          <div class="mini" onclick="comfort('问她：要不要视频陪你十分钟？')">🌙<br>睡前</div>
+        </div>
+        <div class="item" id="comfortLine">点一个场景，生成一条哄兔兔的话。</div>
+      </div>
+    </section>
+
+    <section class="page" id="game">
+      <div class="card">
+        <h2>🥕 喂兔兔小游戏</h2>
+        <div class="game-stage" id="gameStage" onpointermove="moveBunny(event)" onpointerdown="moveBunny(event)">
+          <div class="game-cloud"></div>
+          <div class="game-hud">
+            <span>分数 <b id="gameScore">0</b></span>
+            <span>连击 <b id="gameCombo">0</b></span>
+            <span>心情 <b id="gameMood">乖乖等饭</b></span>
+          </div>
+          <div class="game-message" id="gameMessage">点击开始后，移动兔兔接住掉下来的食物。胡萝卜加分，蛋糕会让兔兔开心加倍。</div>
+          <div class="game-bunny" id="gameBunny">🐰</div>
+        </div>
+        <div class="game-controls">
+          <button class="green" onclick="startFeedGame()">▶ 开始</button>
+          <button onclick="dropBonusFood()">🥕 投喂</button>
+          <button class="pink" onclick="resetFeedGame()">↺ 重来</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🍓 兔兔小粮仓</h2>
+        <div class="pantry" id="pantry">
+          <div class="food-card active" onclick="pickFood('carrot',this)"><b>🥕</b>胡萝卜</div>
+          <div class="food-card" onclick="pickFood('berry',this)"><b>🍓</b>草莓</div>
+          <div class="food-card" onclick="pickFood('cake',this)"><b>🍰</b>蛋糕</div>
+          <div class="food-card" onclick="pickFood('leaf',this)"><b>🥬</b>青菜</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="memo">
+      <div class="card">
+        <h2>📝 兔兔备忘录</h2>
+        <p style="line-height:1.8;color:#8b6655">
+          这里记录兔兔喜欢吃什么、想去哪、讨厌什么。茂茂下次约会前可以偷偷复习。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>🍽️ 兔兔喜欢吃</h2>
+        <div class="memo-list" id="foodMemo">
+          <div class="item"><span>椰子鸡</span><button class="small-btn" onclick="markDone(this)">记住了</button></div>
+          <div class="item"><span>脆脆鱼</span><button class="small-btn" onclick="markDone(this)">记住了</button></div>
+          <div class="item"><span>寿司郎</span><button class="small-btn" onclick="markDone(this)">记住了</button></div>
+          <div class="item"><span>法文包装的小面包</span><button class="small-btn" onclick="markDone(this)">记住了</button></div>
+        </div>
+        <input id="foodInput" placeholder="继续添加兔兔喜欢吃的……">
+        <button onclick="addMemo('foodMemo','foodInput')">+ 添加</button>
+      </div>
+
+      <div class="card">
+        <h2>🎨 兔兔喜欢看</h2>
+        <div class="memo-list" id="exhibitMemo">
+          <div class="item"><span>艺术展</span><button class="small-btn" onclick="markDone(this)">记住了</button></div>
+          <div class="item"><span>手帐展</span><button class="small-btn" onclick="markDone(this)">记住了</button></div>
+          <div class="item"><span>漂亮家居店</span><button class="small-btn" onclick="markDone(this)">记住了</button></div>
+          <div class="item"><span>有小兔兔/可爱周边的市集</span><button class="small-btn" onclick="markDone(this)">记住了</button></div>
+        </div>
+        <input id="exhibitInput" placeholder="继续添加兔兔想看的……">
+        <button class="pink" onclick="addMemo('exhibitMemo','exhibitInput')">+ 添加</button>
+      </div>
+
+      <div class="card">
+        <h2>💗 兔兔喜欢被这样爱</h2>
+        <div class="memo-list" id="loveMemo">
+          <div class="item"><span>被认真夸漂亮、可爱</span><button class="small-btn" onclick="markDone(this)">记住了</button></div>
+          <div class="item"><span>难过时先抱抱，不要先讲道理</span><button class="small-btn" onclick="markDone(this)">记住了</button></div>
+          <div class="item"><span>吃到好吃的会想一起分享</span><button class="small-btn" onclick="markDone(this)">记住了</button></div>
+          <div class="item"><span>看到好看的房子会收藏，幻想兔兔茂茂之家</span><button class="small-btn" onclick="markDone(this)">记住了</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="letter">
+      <div class="card">
+        <h2>💌 今日留言</h2>
+        <div class="item" id="letterPreview">“今天有一点想你，想被茂茂抱紧。”</div>
+        <textarea id="letterInput" placeholder="写一句今天想说的话，适合异地时把话说开……"></textarea>
+        <button class="pink" onclick="sendLetter()">保存这封小信</button>
+      </div>
+
+      <div class="card">
+        <h2>🕊️ 和好按钮</h2>
+        <div class="item" id="peaceText">如果今天有一点不开心，可以先按这里。</div>
+        <button onclick="makePeace()">我想好好说话</button>
+      </div>
+
+      <div class="card">
+        <h2>🩹 吵架求和好模板</h2>
+        <p style="line-height:1.8;color:#8b6655">
+          先认错，先安抚，先确认爱。不要争输赢，要把兔兔抱回来。
+        </p>
+        <div class="peace-tabs">
+          <button class="active" onclick="setPeaceTemplate('soft',this)">温柔长版</button>
+          <button onclick="setPeaceTemplate('short',this)">直接短版</button>
+          <button onclick="setPeaceTemplate('cute',this)">撒娇求和</button>
+          <button onclick="setPeaceTemplate('serious',this)">认真复盘</button>
+        </div>
+        <div class="peace-template" id="peaceTemplateText"></div>
+        <div class="peace-actions">
+          <button class="green" onclick="copyPeaceTemplate()">复制模板</button>
+          <button class="pink" onclick="softenPeaceTemplate()">再软一点</button>
+        </div>
+        <div class="peace-formula">
+          求和好公式：承认感受 → 说自己哪里没做好 → 确认不是不爱 → 邀请她慢慢说 → 明确想和好。
+        </div>
+      </div>
+
+      <div class="footer">
+        Peu importe la distance,<br>
+        mon cœur sait toujours retrouver le tien.<br>
+        无论相隔多远，我的心总会找到你。
+      </div>
+    </section>
+  </div>
+
+  <nav class="nav">
+    <button class="active" onclick="showPage('home',this)"><span>🏡</span>首页</button>
+    <button onclick="showPage('voice',this)"><span>🐰</span>语气</button>
+    <button onclick="showPage('guide',this)"><span>📖</span>指南</button>
+    <button onclick="showPage('game',this)"><span>🥕</span>投喂</button>
+    <button onclick="showPage('memo',this)"><span>📝</span>备忘</button>
+    <button onclick="showPage('letter',this)"><span>💌</span>信箱</button>
+  </nav>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+const voiceLines={
+  miss:[
+    "兔兔，我刚刚突然很想你。不是那种随口一说的想，是很想现在就抱到你的想。",
+    "今天也有一点想兔兔。看到好吃的、好看的，都想留给你。",
+    "兔兔不在身边的时候，我会觉得今天少了一块最软的地方。"
+  ],
+  comfort:[
+    "兔兔，我知道你现在不开心。你不用马上变好，我先陪你，先抱抱你。",
+    "我不是要和你争输赢。我想先接住你，再和你好好说。",
+    "你可以委屈，可以不高兴，我不会因为你有情绪就不爱你。"
+  ],
+  praise:[
+    "兔兔今天也特别漂亮，而且不是敷衍，是我认真看了以后还是这样觉得。",
+    "兔兔真的很可爱。我说时来不及思索，而思索之后，还是这样说。",
+    "我喜欢兔兔亮晶晶的样子，也喜欢兔兔不自信时还愿意被我抱住的样子。"
+  ],
+  peace:[
+    "刚才我说得不好，但我不是不爱你。我们不要冷掉，好不好？我想重新抱抱你。",
+    "我不想赢你，我想和你好。我们先不要互相刺痛，慢慢把话说清楚。",
+    "兔兔，我在乎你，所以我愿意学着更好地说话。"
+  ],
+  night:[
+    "兔兔晚安。今天辛苦了，梦里也要被我抱着睡。",
+    "睡觉啦小兔兔。明天醒来，我还是会继续喜欢你。",
+    "晚安兔兔。隔着距离也没关系，我的心会自己去找你。"
+  ],
+  date:[
+    "下次见面我想带兔兔去吃好吃的，然后牵着你慢慢逛，不赶时间。",
+    "等见面的时候，我要先抱你很久，再听你讲这段时间所有的小事。",
+    "我已经开始想下次见面要带你吃什么了，兔兔可以先点菜。"
+  ]
+};
+const careLines=[
+  "问兔兔今天有没有好好吃饭，然后认真等她回答。",
+  "夸兔兔一个具体的小地方，比如今天的头发、声音或者表情。",
+  "不要只说想你，告诉兔兔你是在哪一秒突然想她的。",
+  "睡前留一句稳定的话：我今天也在认真选你。",
+  "如果兔兔有小情绪，先接住她，再讨论事情本身。",
+  "今天可以给兔兔安排一个小惊喜，哪怕只是一张可爱的照片。"
+];
+const foodTypes={
+  carrot:{emoji:"🥕",points:2,name:"胡萝卜",mood:"咔嚓咔嚓"},
+  berry:{emoji:"🍓",points:3,name:"草莓",mood:"甜甜开心"},
+  cake:{emoji:"🍰",points:5,name:"蛋糕",mood:"开心转圈"},
+  leaf:{emoji:"🥬",points:1,name:"青菜",mood:"健康兔兔"}
+};
+const gameState={
+  running:false,
+  foods:[],
+  score:0,
+  combo:0,
+  bunnyX:50,
+  selected:"carrot",
+  lastTime:0,
+  spawnTimer:0,
+  nextId:1
+};
+const peaceTemplates={
+  soft:`兔兔，对不起。
+
+刚才我们吵起来的时候，我有些话没有说好，也没有先照顾到你的感受。
+我不是不在乎你，也不是想赢你，我只是当时太着急、太笨了。
+
+我想先跟你和好，不想让我们一直冷着。
+如果你还委屈，可以慢慢跟我说，我会认真听，不急着解释。
+我也会好好想想我哪里让你难过了。
+
+我还是很爱你，也很想抱抱你。
+我们不要因为这次吵架就离彼此远一点，好不好？`,
+  short:`兔兔，对不起。
+
+刚才我说得不好，也没有先照顾你的感受。
+我不是不爱你，也不是想和你争输赢。
+
+我想和你好，不想让我们一直冷着。
+你如果还委屈，可以慢慢跟我说，我会认真听。
+
+我还是很爱你，也很想抱抱你。
+我们和好好不好？`,
+  cute:`兔兔，对不起嘛。
+
+刚刚是我太笨了，说话没有把兔兔放在最前面。
+我不是不喜欢你，也不是不要你，我只是不会表达，还把事情弄得更难过了。
+
+你可以生我气，但是不要离我远远的好不好。
+我想把兔兔哄回来，想听你慢慢说，也想抱抱你。
+
+我会乖一点，会好好改。
+兔兔，我们和好嘛。`,
+  serious:`对不起。
+
+刚才这次吵架里，我没有先理解你的感受，而是急着解释自己的立场。
+这样会让你觉得我不在乎你、没有站在你这边，这是我没做好。
+
+我想认真跟你和好，也想把问题说清楚。
+但在讨论问题之前，我想先告诉你：我没有不爱你，也没有想冷着你。
+
+如果你愿意，我们可以慢慢说。
+我会先听你觉得难过的地方，再说我的想法。
+我不想赢这次吵架，我想把我们照顾好。`
+};
+
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.innerText=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),1500);
+}
+function saveList(key,value){
+  const arr=JSON.parse(localStorage.getItem(key)||"[]");
+  arr.push(value);
+  localStorage.setItem(key,JSON.stringify(arr));
+}
+function doTask(text){
+  saveList("tasks",text);
+  renderTasks();
+  toast("茂茂今日任务完成 +1");
+}
+function renderTasks(){
+  const arr=JSON.parse(localStorage.getItem("tasks")||"[]").slice(-4);
+  taskLog.innerHTML=arr.map(x=>`<div class="item">✅ ${x}</div>`).join("");
+}
+function petRabbit(e){
+  e.stopPropagation();
+  const lines=[
+    "兔兔说：今天也要主动说想我。",
+    "兔兔说：不许冷处理，要好好说话。",
+    "兔兔说：我喜欢被认真夸，不是敷衍夸。",
+    "兔兔说：要记得我喜欢椰子鸡和脆脆鱼。"
+  ];
+  homeSpeech.innerText=lines[Math.floor(Math.random()*lines.length)];
+  toast("摸摸兔兔成功 🐰");
+}
+function yardClick(e){
+  const c=document.createElement('div');
+  c.className='carrot';
+  c.textContent='🥕';
+  c.style.left=(e.offsetX-10)+'px';
+  c.style.top=(e.offsetY-10)+'px';
+  e.currentTarget.appendChild(c);
+  setTimeout(()=>c.remove(),750);
+}
+function feedHome(){
+  homeSpeech.innerText="兔兔吃到胡萝卜啦，今天茂茂也要好好爱兔兔。";
+  feedScore.innerText=Math.min(99,Number(feedScore.innerText)+6);
+  careMeter.style.width=Math.min(96,Number(feedScore.innerText)+24)+"%";
+  toast("喂食成功 🥕");
+}
+function refreshCare(){
+  const line=careLines[Math.floor(Math.random()*careLines.length)];
+  dailyCare.innerText=line;
+  kissScore.innerText=80+Math.floor(Math.random()*20);
+  missScore.innerText=86+Math.floor(Math.random()*14);
+  const feed=48+Math.floor(Math.random()*42);
+  feedScore.innerText=feed;
+  careMeter.style.width=(feed+10)+"%";
+  toast("兔兔提醒已刷新");
+}
+function countdown(){
+  const returnDate=new Date("2026-12-01T00:00:00");
+  const today=new Date();
+  const days=Math.max(0,Math.ceil((returnDate-today)/(1000*60*60*24)));
+  daysLeft.innerText=days;
+}
+function generateVoice(){
+  const scene=voiceScene.value;
+  const arr=voiceLines[scene];
+  const line=arr[Math.floor(Math.random()*arr.length)];
+  voiceOutput.value=line;
+  toast("生成兔兔语气 🐰");
+}
+function copyVoice(){
+  voiceOutput.select();
+  document.execCommand("copy");
+  toast("已复制，可以发给兔兔啦");
+}
+function comfort(text){
+  comfortLine.innerText=text;
+  toast("已生成哄兔兔方案");
+}
+function pickFood(type,el){
+  gameState.selected=type;
+  document.querySelectorAll('.food-card').forEach(card=>card.classList.remove('active'));
+  el.classList.add('active');
+  gameMessage.innerText="小粮仓切换为："+foodTypes[type].name+"。点“投喂”可以额外掉一份。";
+}
+function startFeedGame(){
+  if(gameState.running) return toast("兔兔已经在接食物啦");
+  gameState.running=true;
+  gameState.lastTime=performance.now();
+  gameState.spawnTimer=0;
+  gameMessage.innerText="移动兔兔接住食物，连击越高兔兔越开心。";
+  requestAnimationFrame(feedGameLoop);
+  toast("喂兔兔开始");
+}
+function resetFeedGame(){
+  gameState.running=false;
+  gameState.foods=[];
+  gameState.score=0;
+  gameState.combo=0;
+  gameState.bunnyX=50;
+  gameMessage.innerText="点击开始后，移动兔兔接住掉下来的食物。胡萝卜加分，蛋糕会让兔兔开心加倍。";
+  updateGameHud("乖乖等饭");
+  renderGameFoods();
+  updateBunnyPosition();
+  toast("小游戏已重来");
+}
+function moveBunny(e){
+  const rect=gameStage.getBoundingClientRect();
+  const x=Math.max(12,Math.min(88,((e.clientX-rect.left)/rect.width)*100));
+  gameState.bunnyX=x;
+  updateBunnyPosition();
+}
+function updateBunnyPosition(){
+  gameBunny.style.left=gameState.bunnyX+"%";
+}
+function dropBonusFood(){
+  if(!gameState.running) startFeedGame();
+  spawnFood(gameState.selected,Math.max(10,Math.min(90,gameState.bunnyX+(Math.random()*18-9))));
+  toast("加餐已送出");
+}
+function spawnFood(type,x){
+  const keys=Object.keys(foodTypes);
+  const foodType=type||keys[Math.floor(Math.random()*keys.length)];
+  gameState.foods.push({
+    id:gameState.nextId++,
+    type:foodType,
+    x:x||Math.random()*82+9,
+    y:-32,
+    speed:1.35+Math.random()*.95
+  });
+}
+function feedGameLoop(now){
+  if(!gameState.running) return;
+  const dt=Math.min(34,now-gameState.lastTime);
+  gameState.lastTime=now;
+  gameState.spawnTimer+=dt;
+  if(gameState.spawnTimer>760){
+    spawnFood();
+    gameState.spawnTimer=0;
+  }
+  const rect=gameStage.getBoundingClientRect();
+  let mood=gameMood.innerText;
+  gameState.foods.forEach(food=>{
+    food.y+=food.speed*dt*.16;
+    const isCatchZone=food.y>rect.height-112&&food.y<rect.height-36;
+    if(isCatchZone&&Math.abs(food.x-gameState.bunnyX)<13){
+      const info=foodTypes[food.type];
+      food.caught=true;
+      gameState.combo+=1;
+      gameState.score+=info.points+Math.floor(gameState.combo/4);
+      mood=info.mood;
+      gameBunny.classList.add('happy');
+      setTimeout(()=>gameBunny.classList.remove('happy'),140);
+      gameMessage.innerText="兔兔吃到"+info.name+"啦，连击 "+gameState.combo+"！";
+    }else if(food.y>rect.height+36){
+      food.missed=true;
+      gameState.combo=0;
+      mood="有点饿";
+      gameMessage.innerText="差一点点，兔兔还张着小嘴等下一份。";
+    }
+  });
+  gameState.foods=gameState.foods.filter(food=>!food.caught&&!food.missed);
+  updateGameHud(mood);
+  renderGameFoods();
+  requestAnimationFrame(feedGameLoop);
+}
+function updateGameHud(mood){
+  gameScore.innerText=gameState.score;
+  gameCombo.innerText=gameState.combo;
+  gameMood.innerText=mood;
+}
+function renderGameFoods(){
+  document.querySelectorAll('.game-food').forEach(food=>food.remove());
+  gameState.foods.forEach(food=>{
+    const el=document.createElement('div');
+    el.className='game-food';
+    el.textContent=foodTypes[food.type].emoji;
+    el.style.left=`calc(${food.x}% - 17px)`;
+    el.style.top=food.y+"px";
+    gameStage.appendChild(el);
+  });
+}
+function addMemo(listId,inputId){
+  const input=document.getElementById(inputId);
+  if(!input.value.trim()) return toast("先写一点内容呀");
+  const list=document.getElementById(listId);
+  list.innerHTML+=`<div class="item"><span>${input.value.trim()}</span><button class="small-btn" onclick="markDone(this)">记住了</button></div>`;
+  saveList(listId,input.value.trim());
+  input.value="";
+  toast("已加入兔兔备忘录");
+}
+function markDone(btn){
+  btn.innerText="已记住";
+  btn.classList.add("green");
+  toast("茂茂记住啦");
+}
+function sendLetter(){
+  if(!letterInput.value.trim()) return toast("先写一句话呀 💌");
+  letterPreview.innerText="“"+letterInput.value.trim()+"”";
+  localStorage.setItem("letter",letterInput.value.trim());
+  letterInput.value="";
+  toast("小信已保存 💌");
+}
+function makePeace(){
+  peaceText.innerText="我们先不争输赢。先确认：我还爱你，我也想和你好。然后我们再慢慢说清楚。";
+  toast("和好模式开启 🕊️");
+}
+function setPeaceTemplate(type,btn){
+  peaceTemplateText.innerText=peaceTemplates[type];
+  document.querySelectorAll('.peace-tabs button').forEach(button=>button.classList.remove('active'));
+  btn.classList.add('active');
+  toast("已切换求和好模板");
+}
+function copyPeaceTemplate(){
+  const text=peaceTemplateText.innerText;
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>toast("已复制，可以发给兔兔啦"));
+  }else{
+    const area=document.createElement("textarea");
+    area.value=text;
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand("copy");
+    area.remove();
+    toast("已复制，可以发给兔兔啦");
+  }
+}
+function softenPeaceTemplate(){
+  peaceTemplateText.innerText=peaceTemplateText.innerText+"\n\n如果你现在还不想马上理我也没关系，我会在这里等你。我不是来催你的，我是来认真哄你的。";
+  toast("已经更软一点啦");
+}
+
+const saved=localStorage.getItem("letter");
+if(saved) letterPreview.innerText="“"+saved+"”";
+renderTasks();
+countdown();
+updateBunnyPosition();
+peaceTemplateText.innerText=peaceTemplates.soft;
+</script>
+</body>
+</html>
